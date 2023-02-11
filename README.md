@@ -8,7 +8,6 @@ Features:
 - P5 Examples of text and image import, mouse tracking.
 - Deploy easily with [vercel](https://vercel.com/docs)
 - Typescript
-- Simple mouse tracking
 - NOTE: Uses WEBGL! Translation of coordinates from center of canvas (WEBGL) to edge (standard) in current code.
 
 ## Run the app
