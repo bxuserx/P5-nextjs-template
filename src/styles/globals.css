@@ -1,0 +1,17 @@
+/* Padding and margin must be globally = 0 for full screen P5 Canvas */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+/* Remove Scroll Bars */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* @media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+} */
