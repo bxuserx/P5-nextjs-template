@@ -3,7 +3,8 @@ import Image from "next/image";
 import { Inter } from "@next/font/google";
 import styles from "@/styles/Home.module.css";
 //import P5Sketch from "../components/P5Sketch";
-const P5Sketch = React.lazy(() => import("../components/P5Sketch"));
+const P5Template = React.lazy(() => import("../components/P5Template"));
+const Spirograph = React.lazy(() => import("../components/Spirograph"));
 import React, { useEffect, useMemo, useState, Component } from "react";
 import styled from "styled-components";
 
@@ -11,7 +12,8 @@ export default function Home() {
   return (
     <>
       <P5Wrapper>
-        <P5Sketch />
+        {/* <P5Template /> */}
+        <Spirograph />
       </P5Wrapper>
       {/* <Image
         src="/next.svg"

@@ -11,16 +11,28 @@
       "static/chunks/node_modules_next_dist_pages__error_js.js"
     ]
   },
-  "../components/P5Sketch.tsx -> react-p5": {
-    "id": "../components/P5Sketch.tsx -> react-p5",
+  "../components/P5Template.tsx -> react-p5": {
+    "id": "../components/P5Template.tsx -> react-p5",
     "files": [
       "static/chunks/node_modules_react-p5_build_index_js.js"
     ]
   },
-  "index.tsx -> ../components/P5Sketch": {
-    "id": "index.tsx -> ../components/P5Sketch",
+  "../components/Spirograph.tsx -> react-p5": {
+    "id": "../components/Spirograph.tsx -> react-p5",
     "files": [
-      "static/chunks/src_components_P5Sketch_tsx.js"
+      "static/chunks/node_modules_react-p5_build_index_js.js"
+    ]
+  },
+  "index.tsx -> ../components/P5Template": {
+    "id": "index.tsx -> ../components/P5Template",
+    "files": [
+      "static/chunks/src_components_P5Template_tsx.js"
+    ]
+  },
+  "index.tsx -> ../components/Spirograph": {
+    "id": "index.tsx -> ../components/Spirograph",
+    "files": [
+      "static/chunks/src_components_Spirograph_tsx.js"
     ]
   }
 }
