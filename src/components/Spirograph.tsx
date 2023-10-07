@@ -5,24 +5,27 @@ const Sketch = dynamic(import("react-p5"), { ssr: false });
 //const createLoop = dynamic(import("p5.createloop"), { ssr: false });
 
 // ----- Global Variables ----- //
-const Fr: number = 60; // FrameRate
+const Fr: number = 120; // FrameRate
 let w: number;
 let h: number;
 let sassyFont: any;
 
 // ----- Algorithm Variables ----- //
-let NUMSINES = 10; // how many of these things can we do at once?
+let NUMSINES = 7; // how many of these things can we do at once?
 let sines = new Array(NUMSINES); // an array to hold all the current angles
 let rad: any; // an initial radius value for the central sine
 let i; // a counter variable
 
 // play with these to get a sense of what's going on:
-let fund = 0.005; // the speed of the central sine
-let ratio = 0.5; // what multiplier for speed is each additional sine?
+let fund = 0.005; // the speed of the central sine (default 0.005), 0.03 for decent understanding of complex patterns
+let ratio = 0.8; // what multiplier for speed is each additional sine? (default 0.5)
 let alpha = 75; // how opaque is the tracing system
 let trace = true; // are we tracing?
 let backgroundColor = 40;
-let lineThickness = 5;
+let lineThickness = 5; // (default 5)
+const thicknessScaling = 5; // Scaling of line thickness radially (default 5)
+let radiusMultiplier = 0.5; // Multiplier of radial distance (default 1)
+let centerCircle = false;
 
 // Defining the Sketch
 export default function P5Sketch(props: any) {
@@ -36,7 +39,7 @@ export default function P5Sketch(props: any) {
     p5.frameRate(Fr);
     sassyFont = p5.loadFont("./SassyFrass-Regular.ttf");
 
-    rad = h / 4; // compute radius for central circle
+    rad = (h * radiusMultiplier) / 4; // compute radius for central circle
     p5.background(backgroundColor); // clear the screen
 
     //createLoop({ duration: 3, gif: true });
@@ -77,7 +80,7 @@ export default function P5Sketch(props: any) {
         let colorScaling = p5.float(i) / sines.length;
         p5.stroke(255 * colorScaling, alpha); // blue
         p5.fill(255, 255, 255, alpha / 2); // white
-        erad = lineThickness * (1.0 - p5.float(i) / sines.length); // pen width will be related to which sine
+        erad = lineThickness * (sines.length / ((i + 1) * thicknessScaling)); // pen width will be related to which sine
       }
       let radius = rad / (i + 1); // radius for circle itself
       p5.rotate(sines[i]); // rotate circle
@@ -85,7 +88,9 @@ export default function P5Sketch(props: any) {
       p5.push(); // go up one level
       p5.translate(0, radius); // move to sine edge
       if (!trace) p5.ellipse(0, 0, 5, 5); // draw a little circle
-      if (trace) p5.ellipse(0, 0, erad, erad); // draw with erad if tracing
+      if (!centerCircle && i > 0) {
+        if (trace) p5.ellipse(0, 0, erad, erad);
+      } // draw with erad if tracing. centerCircle == FALSE then don't draw it.
       p5.pop(); // go down one level
       p5.translate(0, radius); // move into position for next sine
       sines[i] = (sines[i] + (fund + fund * i * ratio)) % (2 * Math.PI); // update angle based on fundamental
